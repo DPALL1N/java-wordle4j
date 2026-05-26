@@ -88,12 +88,13 @@ class WordleTest {
 
     @Test
     void testAIWordsFiltersOutWrongLetters() throws GameException {
-        WordleGame game = new WordleGame("короб", dictionary, testLogger);
-        game.checkAnswer("пирог");
+        WordleGame game = new WordleGame("пирог", dictionary, testLogger);
+        game.checkAnswer("силач");
         String word = game.getAI();
-        assertEquals("герой", word);
-        assertFalse(word.contains("п"));
-        assertFalse(word.contains("и"));
-        assertFalse(word.contains("г"));
+        assertNotEquals("силач", word);
+        assertFalse(word.contains("с"), "Подсказка содержит удаленную букву 'с'");
+        assertFalse(word.contains("л"), "Подсказка содержит удаленную букву 'л'");
+        assertFalse(word.contains("а"), "Подсказка содержит удаленную букву 'а'");
+        assertFalse(word.contains("ч"), "Подсказка содержит удаленную букву 'ч'");
     }
 }
