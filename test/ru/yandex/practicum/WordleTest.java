@@ -91,8 +91,7 @@ class WordleTest {
         WordleGame game = new WordleGame("короб", dictionary, testLogger);
         game.checkAnswer("пирог");
         String word = game.getAI();
-
-        assertNotEquals("пирог", word);
+        assertEquals("герой", word);
         assertFalse(word.contains("п"));
         assertFalse(word.contains("и"));
         assertFalse(word.contains("г"));
