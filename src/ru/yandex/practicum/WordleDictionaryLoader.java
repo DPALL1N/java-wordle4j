@@ -15,7 +15,7 @@ import java.util.List;
     на выходе должен быть класс WordleDictionary
  */
 public class WordleDictionaryLoader {
-    public WordleDictionary loadDictionary(Path path, PrintWriter printWriter) throws DictionaryLoadingException{
+    public WordleDictionary loadDictionary(Path path, PrintWriter printWriter) throws DictionaryLoadingException {
         List<String> dictionary = new ArrayList<>();
         try (BufferedReader bufferedReader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
             String line;
