@@ -30,6 +30,9 @@ public class WordleGame {
     private final List<Character> correctLetters = new ArrayList<>();
     private final List<Character> wrongLetters = new ArrayList<>();
 
+    private static final int WORD_LENGTH = 5;
+    private static final int MAX_STEPS = 6;
+
     public WordleGame(String answer, WordleDictionary dictionary, PrintWriter logWriter) {
         this.answer = answer.toLowerCase().replace('ё', 'е').trim();
         this.steps = 0;
@@ -45,11 +48,11 @@ public class WordleGame {
 
         String clean = guess.toLowerCase().replace('ё', 'е').trim();
 
-        if (clean.length() != 5) {
-            throw new InputException("Слово должно состоять из 5 букв!");
+        if (clean.length() != WORD_LENGTH) {
+            throw new InputException(String.format("Слово должно состоять из %d букв!", WORD_LENGTH));
         }
         if (!dictionary.contains(clean)) {
-            throw new WordNotFoundInDictionary("Слова \"" + clean + "\" нет в словаре!");
+            throw new WordNotFoundInDictionary(String.format("Слова \"%s\" нет в словаре!", clean));
         }
         return clean;
     }
@@ -58,7 +61,7 @@ public class WordleGame {
     public String checkAnswer(String guess) throws GameException {
         logWriter.println("Проверка ответа. Шаг: " + steps);
 
-        if (steps >= 6) {
+        if (steps >= MAX_STEPS) {
             throw new GameException("Ходов больше нет!");
         }
 
